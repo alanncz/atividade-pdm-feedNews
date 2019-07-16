@@ -1,11 +1,13 @@
 package com.ifpb.atividadecolaborativa_pdm;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +31,7 @@ public class Login extends AppCompatActivity {
         tab.setBackgroundColor(Color.WHITE);
 
         TableRow linha = new TableRow(this);
+        linha.setGravity(Gravity.TOP);
         ImageView img = new ImageView(this);
         img.setImageResource(R.drawable.images);
         linha.addView(img);
@@ -57,9 +60,24 @@ public class Login extends AppCompatActivity {
         bt.setText("Entrar");
         linha3.addView(bt);
 
+        TableRow linha4 = new TableRow(this);
+        linha4.setGravity(Gravity.CENTER);
+        TextView cadastrar = new TextView(this);
+        cadastrar.setText("Cadastre-se");
+        cadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Cadastro.class);
+                startActivity(intent);
+            }
+        });
+        linha4.addView(cadastrar);
+
+        tab.addView(linha);//Não tava pegando pq faltou adicionar essa linha na tabela
         tab.addView(linha1);
         tab.addView(linha2);
         tab.addView(linha3);
+        tab.addView(linha4);
 
         setContentView(tab);
 
