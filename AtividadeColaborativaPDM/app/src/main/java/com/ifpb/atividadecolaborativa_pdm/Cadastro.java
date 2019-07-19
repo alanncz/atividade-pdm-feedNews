@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class Cadastro extends AppCompatActivity {
+
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,11 @@ public class Cadastro extends AppCompatActivity {
         setContentView(root);
         //</LINEAR LAYOUT>
 
+        tv = new TextView(this);
+        tv.setTextSize(40f);
+        tv.setText("Cadastro");
+        tv.setGravity(Gravity.CENTER);
+
 
         BoxPadrao box01 = new BoxPadrao(this, "Nome");
         //BoxPadrao box02 = new BoxPadrao (this, "Data de Nascimento");
@@ -35,6 +45,7 @@ public class Cadastro extends AppCompatActivity {
         BoxPassword box04 = new BoxPassword (this, "Senha");
         BoxPassword box05 = new BoxPassword (this, "Confirmar Senha");
 
+        root.addView(tv);
         root.addView(box01);
         //root.addView(box02);
         root.addView(box03);

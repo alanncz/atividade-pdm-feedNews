@@ -24,44 +24,58 @@ public class Login extends AppCompatActivity {
         super.onCreate(icicle);
 
         TableLayout tab = new TableLayout(this);
-        tab.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-                LayoutParams.MATCH_PARENT));
+        tab.setLayoutParams(
+                new LayoutParams(
+                        LayoutParams.MATCH_PARENT,
+                        LayoutParams.MATCH_PARENT
+                )
+        );
 
         tab.setColumnStretchable(1, true);
         tab.setBackgroundColor(Color.WHITE);
 
-        TableRow linha = new TableRow(this);
-        linha.setGravity(Gravity.TOP);
-        ImageView img = new ImageView(this);
-        img.setImageResource(R.drawable.images);
-        linha.addView(img);
+        TableRow linha0 = new TableRow(this);
+        linha0.setGravity(Gravity.CENTER);
+        TextView login = new TextView(this);
+        login.setGravity(Gravity.CENTER);
+        login.setText("Login");
+        login.setTextSize(40f);
+        linha0.addView(login);
 
         TableRow linha1 = new TableRow(this);
-        TextView email = new TextView(this);
-        email.setText("Email: ");
-        linha1.addView(email);
-
-        EditText temail = new EditText(this);
-        temail.requestFocus();
-        linha1.addView(temail);
+        linha1.setGravity(Gravity.CENTER);
+        ImageView img = new ImageView(this);
+        img.setImageResource(R.drawable.images);
+        linha1.addView(img);
 
         TableRow linha2 = new TableRow(this);
-        TextView senha = new TextView(this);
-        senha.setText("Senha");
-        linha2.addView(senha);
-
-        EditText tsenha = new EditText(this);
-        tsenha.setTransformationMethod(new PasswordTransformationMethod());
-        linha2.addView(tsenha);
+        TextView email = new TextView(this);
+        email.setText("Email:");
+        linha2.addView(email);
 
         TableRow linha3 = new TableRow(this);
-        linha3.setGravity(Gravity.CENTER);
+        EditText temail = new EditText(this);
+        temail.requestFocus();
+        linha3.addView(temail);
+
+        TableRow linha4 = new TableRow(this);
+        TextView senha = new TextView(this);
+        senha.setText("Senha");
+        linha4.addView(senha);
+
+        TableRow linha5 = new TableRow(this);
+        EditText tsenha = new EditText(this);
+        tsenha.setTransformationMethod(new PasswordTransformationMethod());
+        linha5.addView(tsenha);
+
+        TableRow linha6 = new TableRow(this);
+        linha6.setGravity(Gravity.CENTER);
         Button bt = new Button(this);
         bt.setText("Entrar");
-        linha3.addView(bt);
+        linha6.addView(bt);
 
-        //TableRow linha4 = new TableRow(this);
-        //linha4.setGravity(Gravity.CENTER);
+        //TableRow linha7 = new TableRow(this);
+        //linha7.setGravity(Gravity.CENTER);
         //TextView cadastrar = new TextView(this);
         //cadastrar.setText("Cadastre-se");
         //cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -71,13 +85,17 @@ public class Login extends AppCompatActivity {
         //        startActivity(intent);
         //    }
         //});
-        //linha4.addView(cadastrar);
+        //linha7.addView(cadastrar);
 
-        tab.addView(linha);//Não tava pegando pq faltou adicionar essa linha na tabela
-        tab.addView(linha1);
+        tab.addView(linha0);
+        tab.addView(linha1);//Não tava pegando pq faltou adicionar essa linha na tabela
         tab.addView(linha2);
         tab.addView(linha3);
-        //tab.addView(linha4);
+        tab.addView(linha4);
+        tab.addView(linha5);
+        tab.addView(linha6);
+
+
 
         setContentView(tab);
 
