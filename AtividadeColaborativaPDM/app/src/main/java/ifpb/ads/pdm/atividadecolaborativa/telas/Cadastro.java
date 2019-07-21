@@ -1,4 +1,4 @@
-package com.ifpb.atividadecolaborativa_pdm;
+package ifpb.ads.pdm.atividadecolaborativa.telas;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import ifpb.ads.pdm.atividadecolaborativa.layout.BoxPadrao;
+import ifpb.ads.pdm.atividadecolaborativa.layout.BoxPassword;
 
 public class Cadastro extends AppCompatActivity {
 

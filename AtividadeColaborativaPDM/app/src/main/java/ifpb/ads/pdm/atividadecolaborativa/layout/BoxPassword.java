@@ -1,9 +1,8 @@
-package com.ifpb.atividadecolaborativa_pdm;
+package ifpb.ads.pdm.atividadecolaborativa.layout;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.text.method.PasswordTransformationMethod;
-import android.util.AttributeSet;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;

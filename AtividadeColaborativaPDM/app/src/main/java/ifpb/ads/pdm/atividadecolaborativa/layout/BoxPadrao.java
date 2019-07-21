@@ -1,14 +1,10 @@
-package com.ifpb.atividadecolaborativa_pdm;
+package ifpb.ads.pdm.atividadecolaborativa.layout;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.method.PasswordTransformationMethod;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.net.PasswordAuthentication;
 
 public class BoxPadrao extends LinearLayout {
 
