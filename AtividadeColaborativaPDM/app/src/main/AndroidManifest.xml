@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ifpb.atividadecolaborativa_pdm">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +22,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name="ifpb.ads.pdm.atividadecolaborativa.rss.Service" />
+        <service android:name="ifpb.ads.pdm.atividadecolaborativa.servicos.ServiceRequest"/>
+        <receiver android:name="ifpb.ads.pdm.atividadecolaborativa.servicos.ReiceverInitService"/>
     </application>
 
 </manifest>
