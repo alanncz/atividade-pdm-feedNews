@@ -1,11 +1,13 @@
 package ifpb.ads.pdm.atividadecolaborativa.telas;
 
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,14 +16,28 @@ import android.widget.TableLayout.LayoutParams;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+//import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import android.widget.Toast;
 import com.ifpb.atividadecolaborativa_pdm.R;
 
 
 public class Login extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private EditText temail;
+    private EditText tsenha;
+
     @Override
-    protected void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
 
         TableLayout tab = new TableLayout(this);
         tab.setLayoutParams(
@@ -54,7 +70,7 @@ public class Login extends AppCompatActivity {
         linha2.addView(email);
 
         TableRow linha3 = new TableRow(this);
-        EditText temail = new EditText(this);
+        temail = new EditText(this);
         temail.requestFocus();
         linha3.addView(temail);
 
@@ -64,7 +80,7 @@ public class Login extends AppCompatActivity {
         linha4.addView(senha);
 
         TableRow linha5 = new TableRow(this);
-        EditText tsenha = new EditText(this);
+        tsenha = new EditText(this);
         tsenha.setTransformationMethod(new PasswordTransformationMethod());
         linha5.addView(tsenha);
 
@@ -72,6 +88,28 @@ public class Login extends AppCompatActivity {
         linha6.setGravity(Gravity.CENTER);
         Button bt = new Button(this);
         bt.setText("Entrar");
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signInWithEmailAndPassword(temail.getText().toString(), tsenha.getText().toString())
+                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+
+                                    Intent intent = new Intent(Login.this, Principal.class);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(Login.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+
+                                }
+
+
+                            }
+                        });
+            }
+        });
         linha6.addView(bt);
 
         //TableRow linha7 = new TableRow(this);

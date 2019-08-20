@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "688942933021",
+    "firebase_url": "https://atividadecolaborativapdm.firebaseio.com",
+    "project_id": "atividadecolaborativapdm",
+    "storage_bucket": "atividadecolaborativapdm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688942933021:android:061192deb45a011a",
+        "android_client_info": {
+          "package_name": "com.ifpb.atividadecolaborativa_pdm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688942933021-chh4nqg7s52410lsvheld4f8hpf9nsrc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ifpb.atividadecolaborativa_pdm",
+            "certificate_hash": "49a9782c53bfa6ea57b39a9da375b902b773ea08"
+          }
+        },
+        {
+          "client_id": "688942933021-mfm4ktcr36o2v5724nl6mu2d67tr6cgc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2HraO30I-JF8rgmV-fPRVdtdNIDKZ-ic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688942933021-mfm4ktcr36o2v5724nl6mu2d67tr6cgc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,6 +14,7 @@
 
         <activity android:name="ifpb.ads.pdm.atividadecolaborativa.telas.Cadastro"></activity>
         <activity android:name="ifpb.ads.pdm.atividadecolaborativa.telas.Login"></activity>
+        <activity android:name="ifpb.ads.pdm.atividadecolaborativa.telas.Principal"></activity>
         <activity android:name="ifpb.ads.pdm.atividadecolaborativa.telas.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
