@@ -2,12 +2,25 @@ package ifpb.ads.pdm.atividadecolaborativa.rss;
 
 public class FeedMessage {
 
-    String title;
-    String description;
-    String link;
-    String author;
-    String guid;
-    String pubDate;
+    private String title;
+    private String description;
+    private String link;
+    private String author;
+    private String guid;
+    private String pubDate;
+    private String contentEncoded;
+
+    public FeedMessage() {
+
+    }
+
+    public String getContentEncoded() {
+        return contentEncoded;
+    }
+
+    public void setContentEncoded(String contentEncoded) {
+        this.contentEncoded = contentEncoded;
+    }
 
     public String getPubDate() {
         return pubDate;
@@ -59,7 +72,14 @@ public class FeedMessage {
 
     @Override
     public String toString() {
-        return "FeedMessage{" + "title=" + title + ", description=" + description + ", link=" + link + ", author=" + author + ", guid=" + guid + ", pubDate=" + pubDate + '}';
+        return "FeedMessage{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", link='" + link + '\'' +
+                ", author='" + author + '\'' +
+                ", guid='" + guid + '\'' +
+                ", pubDate='" + pubDate + '\'' +
+                ", contentEncoded='" + contentEncoded + '\'' +
+                '}';
     }
-
 }

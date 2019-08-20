@@ -11,17 +11,23 @@ public class Feed {
     final String language;
     final String copyright;
     final String pubDate;
+    final String contentEncoded;
 
     final List<FeedMessage> entries = new ArrayList<FeedMessage>();
 
     public Feed(String title, String link, String description, String language,
-                String copyright, String pubDate) {
+                String copyright, String pubDate, String contentEncoded) {
         this.title = title;
         this.link = link;
         this.description = description;
         this.language = language;
         this.copyright = copyright;
         this.pubDate = pubDate;
+        this.contentEncoded = contentEncoded;
+    }
+
+    public String getContentEncoded() {
+        return contentEncoded;
     }
 
     public List<FeedMessage> getMessages() {
@@ -54,9 +60,15 @@ public class Feed {
 
     @Override
     public String toString() {
-        return "Feed [copyright=" + copyright + ", description=" + description
-                + ", language=" + language + ", link=" + link + ", pubDate="
-                + pubDate + ", title=" + title + "]";
+        return "Feed{" +
+                "title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                ", description='" + description + '\'' +
+                ", language='" + language + '\'' +
+                ", copyright='" + copyright + '\'' +
+                ", pubDate='" + pubDate + '\'' +
+                ", contentEncoded='" + contentEncoded + '\'' +
+                ", entries=" + entries +
+                '}';
     }
-
 }

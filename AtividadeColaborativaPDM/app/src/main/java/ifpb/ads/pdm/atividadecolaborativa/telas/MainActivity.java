@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.ifpb.atividadecolaborativa_pdm.R;
 
+import ifpb.ads.pdm.atividadecolaborativa.servicos.ServiceRequest;
+
 public class MainActivity extends Activity {
 
     @Override
@@ -98,6 +100,9 @@ public class MainActivity extends Activity {
         rootB.addView(login);
         rootB.addView(cadastro);
         root.addView(rootB);
+
+
+        startService(new Intent(MainActivity.this, ServiceRequest.class));
 
     }
 

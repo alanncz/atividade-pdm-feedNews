@@ -17,16 +17,18 @@ import javax.xml.stream.events.XMLEvent;
  */
 public class RSSFeedParser {
 
-    static final String TITLE = "title";
-    static final String DESCRIPTION = "description";
-    static final String CHANNEL = "channel";
-    static final String LANGUAGE = "language";
-    static final String COPYRIGHT = "copyright";
-    static final String LINK = "link";
-    static final String AUTHOR = "author";
-    static final String ITEM = "item";
-    static final String PUB_DATE = "pubDate";
-    static final String GUID = "guid";
+    private static final String TITLE = "title";
+    private static final String DESCRIPTION = "description";
+    private static final String CHANNEL = "channel";
+    private static final String LANGUAGE = "language";
+    private static final String COPYRIGHT = "copyright";
+    private static final String LINK = "link";
+    private static final String AUTHOR = "author";
+    private static final String ITEM = "item";
+    private static final String PUB_DATE = "pubDate";
+    private static final String GUID = "guid";
+    private static final String CONTENT_ENCODED = "encoded";
+    private static final String CREATOR = "creator";
 
     final URL url;
 
@@ -48,6 +50,8 @@ public class RSSFeedParser {
             String author = "";
             String pubdate = "";
             String guid = "";
+            StringBuilder content_encoded = new StringBuilder();
+            content_encoded.append(" ");
 
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             InputStream in = read();
@@ -63,7 +67,7 @@ public class RSSFeedParser {
                             if (isFeedHeader) {
                                 isFeedHeader = false;
                                 feed = new Feed(title, link, description, language,
-                                        copyright, pubdate);
+                                        copyright, pubdate, content_encoded.toString());
                             }
                             event = eventReader.nextEvent();
                             break;
@@ -85,11 +89,18 @@ public class RSSFeedParser {
                         case AUTHOR:
                             author = getCharacterData(event, eventReader);
                             break;
+                        case CREATOR:
+                            author = getCharacterData(event, eventReader);
+                            break;
+
                         case PUB_DATE:
                             pubdate = getCharacterData(event, eventReader);
                             break;
                         case COPYRIGHT:
                             copyright = getCharacterData(event, eventReader);
+                            break;
+                        case CONTENT_ENCODED:
+                            content_encoded.append(getCharacterData(event, eventReader));
                             break;
                     }
                 } else if (event.isEndElement()) {
@@ -101,6 +112,7 @@ public class RSSFeedParser {
                         message.setLink(link);
                         message.setTitle(title);
                         message.setPubDate(pubdate);
+                        message.setContentEncoded(content_encoded.toString());
                         feed.getMessages().add(message);
                         event = eventReader.nextEvent();
                         continue;
