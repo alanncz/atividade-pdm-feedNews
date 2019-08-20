@@ -11,10 +11,6 @@ import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.XMLEvent;
 
 
-/**
- *
- * @author alann
- */
 public class RSSFeedParser {
 
     private static final String TITLE = "title";
@@ -67,7 +63,7 @@ public class RSSFeedParser {
                             if (isFeedHeader) {
                                 isFeedHeader = false;
                                 feed = new Feed(title, link, description, language,
-                                        copyright, pubdate, content_encoded.toString());
+                                        copyright, pubdate);
                             }
                             event = eventReader.nextEvent();
                             break;
@@ -113,7 +109,7 @@ public class RSSFeedParser {
                         message.setTitle(title);
                         message.setPubDate(pubdate);
                         message.setContentEncoded(content_encoded.toString());
-                        feed.getMessages().add(message);
+                        feed.getEntries().add(message);
                         event = eventReader.nextEvent();
                         continue;
                     }

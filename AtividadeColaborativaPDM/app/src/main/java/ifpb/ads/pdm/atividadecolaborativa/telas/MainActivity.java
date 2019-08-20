@@ -100,8 +100,6 @@ public class MainActivity extends Activity {
         rootB.addView(login);
         rootB.addView(cadastro);
         root.addView(rootB);
-
-
         startService(new Intent(MainActivity.this, ServiceRequest.class));
 
     }

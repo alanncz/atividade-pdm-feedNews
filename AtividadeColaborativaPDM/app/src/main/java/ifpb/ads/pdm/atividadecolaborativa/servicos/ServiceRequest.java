@@ -39,21 +39,17 @@ public class ServiceRequest extends Service {
 
     public void agendaAbertura(){
 
-        Calendar calender = Calendar.getInstance();
-        calender.setTimeInMillis(System.currentTimeMillis());
-        calender.add(Calendar.SECOND, 5);
-
         Intent intent = new Intent(ServiceRequest.this, ReiceverInitService.class);
         PendingIntent pi = PendingIntent.getBroadcast(ServiceRequest.this, 1010, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager reabrir = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         reabrir.set(AlarmManager.RTC_WAKEUP,getTimeMillis(),pi);
-        Log.d("Serviço", "Serviço agendado para");
+        Log.d("Serviço", "Serviço agendado...");
     }
 
     private Long  getTimeMillis(){
         Calendar calender = Calendar.getInstance();
         calender.setTimeInMillis(System.currentTimeMillis());
-        calender.add(Calendar.SECOND, 10);
+        calender.add(Calendar.MINUTE, 5);
         return calender.getTimeInMillis();
     }
 
