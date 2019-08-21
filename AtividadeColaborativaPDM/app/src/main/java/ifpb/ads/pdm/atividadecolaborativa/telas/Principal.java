@@ -2,6 +2,7 @@ package ifpb.ads.pdm.atividadecolaborativa.telas;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -10,9 +11,15 @@ import android.widget.RelativeLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import ifpb.ads.pdm.atividadecolaborativa.layout.BoxNoticia;
+import ifpb.ads.pdm.atividadecolaborativa.database.DB;
+
 public class Principal extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private String titulo = "caio";
+    private String descricao = "ola";
+    private Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,12 @@ public class Principal extends AppCompatActivity {
             startActivity(intent);
         });
         root.addView(sair);
+
+
+
+        BoxNoticia box01 = new BoxNoticia(this,titulo,descricao,uri);
+
+        root.addView(box01);
 
 
 
