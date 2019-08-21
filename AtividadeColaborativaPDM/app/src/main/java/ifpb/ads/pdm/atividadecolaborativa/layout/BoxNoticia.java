@@ -2,13 +2,17 @@ package ifpb.ads.pdm.atividadecolaborativa.layout;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.media.Image;
 import android.view.Gravity;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.net.URL;
+
+
 
 public class BoxNoticia extends RelativeLayout {
 
@@ -32,7 +36,15 @@ public class BoxNoticia extends RelativeLayout {
 
         img = new ImageView(getContext());
 
-        img.setImageURI();
+        Image image = null;
+        try {
+            URL url = new URL(src);
+            //image = ImageIO.read(url);
+        }catch (IOException e){
+
+        }
+
+        //img.setImageURI();
         addView(img);
 
         titulo = new TextView(getContext());
