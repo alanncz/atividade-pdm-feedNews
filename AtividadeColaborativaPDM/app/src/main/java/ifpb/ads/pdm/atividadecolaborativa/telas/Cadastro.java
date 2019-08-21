@@ -11,16 +11,33 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import android.support.annotation.NonNull;
+import android.widget.Toast;
+
 import ifpb.ads.pdm.atividadecolaborativa.layout.BoxPadrao;
 import ifpb.ads.pdm.atividadecolaborativa.layout.BoxPassword;
 
 public class Cadastro extends AppCompatActivity {
 
     private TextView tv;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        auth = FirebaseAuth.getInstance();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        //myRef.setValue("Hello, World!");
 
         //<LINEAR LAYOUT>
         LinearLayout root = new LinearLayout(this);
@@ -44,8 +61,8 @@ public class Cadastro extends AppCompatActivity {
 
         BoxPadrao box01 = new BoxPadrao(this, "Nome");
         //BoxPadrao box02 = new BoxPadrao (this, "Data de Nascimento");
-        BoxPadrao box03 = new BoxPadrao (this, "Email");
-        BoxPassword box04 = new BoxPassword (this, "Senha");
+        final BoxPadrao box03 = new BoxPadrao (this, "Email");
+        final BoxPassword box04 = new BoxPassword (this, "Senha");
         BoxPassword box05 = new BoxPassword (this, "Confirmar Senha");
 
         root.addView(tv);
@@ -60,9 +77,24 @@ public class Cadastro extends AppCompatActivity {
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+
+                auth.createUserWithEmailAndPassword(box03.getValor(), box04.getValor())
+                        .addOnCompleteListener(Cadastro.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                if(task.isSuccessful()){
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                }else {
+                                    Toast.makeText(Cadastro.this,"Cadastro falhou ", Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            }
+                        });
             }
+
         });
 
         root.addView(botao);
