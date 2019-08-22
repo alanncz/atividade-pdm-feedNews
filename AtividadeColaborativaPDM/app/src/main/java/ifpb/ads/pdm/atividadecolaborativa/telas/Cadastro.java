@@ -69,17 +69,17 @@ public class Cadastro extends AppCompatActivity {
         botao.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    User user = new User();
-                    user.setName(box01.getValor());
-                    user.setEmail(box03.getValor());
-                    user.setPassword(box04.getValor());
-                    db.inserir(user);
+                    if(!box01.getValor().isEmpty() & !box03.getValor().isEmpty() & !box04.getValor().isEmpty()) {
+                        User user = new User();
+                        user.setName(box01.getValor());
+                        user.setEmail(box03.getValor());
+                        user.setPassword(box04.getValor());
+                        db.inserir(user);
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
 
-                    User user1 = db.getUser("alannrodrigues@hotmail.com", "123");
-                    System.out.println(user1);
                 }
 
             });

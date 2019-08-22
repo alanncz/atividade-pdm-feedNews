@@ -1,7 +1,9 @@
 package ifpb.ads.pdm.atividadecolaborativa.telas;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,29 +17,28 @@ import android.widget.TableLayout;
 import android.widget.TableLayout.LayoutParams;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-//import androidx.annotation.NonNull;
-import android.support.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import android.widget.Toast;
 import com.ifpb.atividadecolaborativa_pdm.R;
+
+import ifpb.ads.pdm.atividadecolaborativa.control.Control;
+import ifpb.ads.pdm.atividadecolaborativa.model.User;
 
 
 public class Login extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
     private EditText temail;
     private EditText tsenha;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.context = this;
 
-        mAuth = FirebaseAuth.getInstance();
+        SharedPreferences sharedPreferences = getSharedPreferences("authenticatedUser", MODE_PRIVATE);
+        boolean autenticado = sharedPreferences.getBoolean("logado", false);
+        if(autenticado){
+            startActivity(new Intent(this, Principal.class));
+        }
 
         TableLayout tab = new TableLayout(this);
         tab.setLayoutParams(
@@ -91,47 +92,29 @@ public class Login extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                mAuth.signInWithEmailAndPassword(temail.getText().toString(), tsenha.getText().toString())
-//                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//
-//                                    Intent intent = new Intent(Login.this, Principal.class);
-//                                    startActivity(intent);
-//
-//                                    Login.this.finish();
-//
-//                                } else {
-//                                    Toast.makeText(Login.this, "Authentication failed.",
-//                                            Toast.LENGTH_SHORT).show();
-//
-//                                }
-//
-//
-//                            }
-//                        });
-                Intent intent = new Intent(Login.this, Principal.class);
-                                    startActivity(intent);
+
+                Control control = new Control(context);
+
+                String email = temail.getText().toString();
+                String password = tsenha.getText().toString();
+
+                System.out.println(email);
+                System.out.println(password);
+
+                if(email!= null & password!= null) {
+                    User user = control.login(email, password);
+                    if(user != null) {
+                        Intent intent = new Intent(getApplicationContext(), Principal.class);
+                        startActivity(intent);
+                    }
+                }
             }
         });
+
         linha6.addView(bt);
 
-        //TableRow linha7 = new TableRow(this);
-        //linha7.setGravity(Gravity.CENTER);
-        //TextView cadastrar = new TextView(this);
-        //cadastrar.setText("Cadastre-se");
-        //cadastrar.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        Intent intent = new Intent(getApplicationContext(), Cadastro.class);
-        //        startActivity(intent);
-        //    }
-        //});
-        //linha7.addView(cadastrar);
-
         tab.addView(linha0);
-        tab.addView(linha1);//Não tava pegando pq faltou adicionar essa linha na tabela
+        tab.addView(linha1);
         tab.addView(linha2);
         tab.addView(linha3);
         tab.addView(linha4);
