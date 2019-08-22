@@ -16,7 +16,8 @@ public class DBCore extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(sqldb());
+        db.execSQL(sqldbPost());
+        db.execSQL(sqldbUsuario());
 
     }
 
@@ -25,15 +26,24 @@ public class DBCore extends SQLiteOpenHelper {
 
     }
 
-    private String sqldb(){
-        return " create table post(\n" +
-                "\ttitle text,\n" +
-                "\tdescription text,\n" +
-                "\tlink text,\n" +
-                "\tauthor text,\n" +
-                "\tguid text primary key,\n" +
-                "\tpubDate text,\n" +
-                "\tcontentEncoded text\n" +
-                ");";
+    private String sqldbPost(){
+        return "create table post( \n" +
+                "                title text,\n" +
+                "                description text,\n" +
+                "                link text,\n" +
+                "                author text,\n" +
+                "                guid text primary key,\n" +
+                "                pubDate text,\n" +
+                "                contentEncoded text\n" +
+                "               );";
+
+    }
+
+    private String sqldbUsuario(){
+        return "create table usuario(\n" +
+                "                name text,\n" +
+                "                email text primary key,\n" +
+                "                password text\n" +
+                "               );";
     }
 }

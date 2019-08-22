@@ -4,7 +4,7 @@ package ifpb.ads.pdm.atividadecolaborativa.rotinas;
 import java.net.MalformedURLException;
 
 import ifpb.ads.pdm.atividadecolaborativa.database.DB;
-import ifpb.ads.pdm.atividadecolaborativa.rss.Feed;
+import ifpb.ads.pdm.atividadecolaborativa.model.Feed;
 import ifpb.ads.pdm.atividadecolaborativa.rss.RSSFeedParser;
 import ifpb.ads.pdm.atividadecolaborativa.servicos.ServiceRequest;
 

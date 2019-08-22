@@ -8,8 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import ifpb.ads.pdm.atividadecolaborativa.rss.Feed;
-import ifpb.ads.pdm.atividadecolaborativa.rss.FeedMessage;
+import ifpb.ads.pdm.atividadecolaborativa.model.Feed;
+import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
+import ifpb.ads.pdm.atividadecolaborativa.model.User;
 
 public class DB {
 
@@ -18,6 +19,40 @@ public class DB {
     public DB(Context context){
         DBCore db = new DBCore(context);
         this.db = db.getWritableDatabase();
+    }
+
+    public void inserir(User user){
+
+        ContentValues values = new ContentValues();
+
+        values.put("name", user.getName());
+        values.put("email", user.getEmail());
+        values.put("password", user.getPassword());
+        db.insert("usuario", null, values);
+
+        System.out.println(user.getName() + " foi cadastrado com sucesso");
+
+    }
+
+    public User getUser(String email, String password){
+
+        String[] coluns = new String[]{"name", "email", "password"};
+        String selection = "email = ? and password = ?";
+        String[] arguments = new String[]{email,password};
+
+        Cursor cursor = db.query("usuario",coluns,selection,arguments,null,null, "name DESC");
+
+        if(cursor.getCount() > 0){
+            while(cursor.moveToNext()){
+                User user = new User();
+                user.setName(cursor.getString(0));
+                user.setEmail(cursor.getString(1));
+                user.setPassword(cursor.getString(2));
+                return user;
+            }
+        }
+
+        return null;
     }
 
     public void inserir(Feed feed){

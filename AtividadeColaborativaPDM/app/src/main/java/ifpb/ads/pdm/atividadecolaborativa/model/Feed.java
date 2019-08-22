@@ -1,4 +1,4 @@
-package ifpb.ads.pdm.atividadecolaborativa.rss;
+package ifpb.ads.pdm.atividadecolaborativa.model;
 
 import java.util.ArrayList;
 import java.util.List;

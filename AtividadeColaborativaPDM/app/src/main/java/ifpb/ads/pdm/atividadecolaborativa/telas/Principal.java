@@ -3,8 +3,6 @@ package ifpb.ads.pdm.atividadecolaborativa.telas;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -21,9 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
-import ifpb.ads.pdm.atividadecolaborativa.layout.BoxNoticia;
 import ifpb.ads.pdm.atividadecolaborativa.database.DB;
-import ifpb.ads.pdm.atividadecolaborativa.rss.FeedMessage;
+import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
 
 public class Principal extends AppCompatActivity {
 

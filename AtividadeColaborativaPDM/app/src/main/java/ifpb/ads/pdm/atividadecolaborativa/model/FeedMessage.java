@@ -1,4 +1,4 @@
-package ifpb.ads.pdm.atividadecolaborativa.rss;
+package ifpb.ads.pdm.atividadecolaborativa.model;
 
 public class FeedMessage {
 

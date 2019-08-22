@@ -10,6 +10,9 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.XMLEvent;
 
+import ifpb.ads.pdm.atividadecolaborativa.model.Feed;
+import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
+
 
 public class RSSFeedParser {
 

@@ -7,35 +7,27 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.DatabaseReference;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import android.support.annotation.NonNull;
-import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import ifpb.ads.pdm.atividadecolaborativa.database.DB;
 import ifpb.ads.pdm.atividadecolaborativa.layout.BoxPadrao;
 import ifpb.ads.pdm.atividadecolaborativa.layout.BoxPassword;
+import ifpb.ads.pdm.atividadecolaborativa.model.User;
 
 public class Cadastro extends AppCompatActivity {
 
     private TextView tv;
     private FirebaseAuth auth;
+    private DB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        auth = FirebaseAuth.getInstance();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        db = new DB(this);
 
         //myRef.setValue("Hello, World!");
 
@@ -75,27 +67,22 @@ public class Cadastro extends AppCompatActivity {
         Button botao = new Button(this);
         botao.setText("Confirme");
         botao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                @Override
+                public void onClick(View view) {
+                    User user = new User();
+                    user.setName(box01.getValor());
+                    user.setEmail(box03.getValor());
+                    user.setPassword(box04.getValor());
+                    db.inserir(user);
 
-                auth.createUserWithEmailAndPassword(box03.getValor(), box04.getValor())
-                        .addOnCompleteListener(Cadastro.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
 
-                                if(task.isSuccessful()){
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                }else {
-                                    Toast.makeText(Cadastro.this,"Cadastro falhou ", Toast.LENGTH_SHORT).show();
-                                }
+                    User user1 = db.getUser("alannrodrigues@hotmail.com", "123");
+                    System.out.println(user1);
+                }
 
-
-                            }
-                        });
-            }
-
-        });
+            });
 
         root.addView(botao);
 
