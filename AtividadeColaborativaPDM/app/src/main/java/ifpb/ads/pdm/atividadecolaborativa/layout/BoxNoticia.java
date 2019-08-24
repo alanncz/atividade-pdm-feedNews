@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.media.Image;
 import android.view.Gravity;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 

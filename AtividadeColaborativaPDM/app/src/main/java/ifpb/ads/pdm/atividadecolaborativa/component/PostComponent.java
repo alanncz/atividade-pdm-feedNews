@@ -8,12 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.net.URL;
-
 import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
-import ifpb.ads.pdm.atividadecolaborativa.until.CreatorDrawable;
-import ifpb.ads.pdm.atividadecolaborativa.until.ImgContentEncoded;
 
 public class PostComponent extends LinearLayout {
 
@@ -26,7 +21,6 @@ public class PostComponent extends LinearLayout {
     public PostComponent(Activity screen, FeedMessage post) {
         super(screen);
         this.init(screen, post);
-        //definindo layout
 
         if(post.getImgDrawable() != null){
             this.noticeWithLayoutImage(screen, post.getImgDrawable());
@@ -39,24 +33,19 @@ public class PostComponent extends LinearLayout {
         setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         setOrientation(VERTICAL);
 
-        //Integer halfWidth = DeviceProperties.getDeviceWidth(tela.getWindowManager())/2;
-
         this.title = new TextView(screen);
         this.title.setText(post.getTitle());
         this.title.setTextSize(20);
-        //this.titulo.setWidth(halfWidth);
 
         this.description = new TextView(screen);
         this.description.setText(post.getDescription());
         this.description.setTextSize(14);
         this.description.setPadding(0,10,0,0);
-        //this.descricao.setWidth(halfWidth);
 
         this.data = new TextView(screen);
         this.data.setText(post.getPubDate());
         this.data.setTextSize(16);
         this.data.setPadding(0,10,0,0);
-        //this.data.setWidth(halfWidth);
     }
 
     private void noticeWithoutLayoutImage(Context context){
@@ -92,7 +81,6 @@ public class PostComponent extends LinearLayout {
         ImageView postCover = new ImageView(context);
         postCover.setImageDrawable(imgNotice);
 
-        //permite definir dimensoes da img
         postCover.setAdjustViewBounds(true);
         postCover.setMaxWidth(300);
         postCover.setMaxHeight(300);

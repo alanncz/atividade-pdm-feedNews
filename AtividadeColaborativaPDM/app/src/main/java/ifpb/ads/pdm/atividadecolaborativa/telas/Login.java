@@ -98,9 +98,6 @@ public class Login extends AppCompatActivity {
                 String email = temail.getText().toString();
                 String password = tsenha.getText().toString();
 
-                System.out.println(email);
-                System.out.println(password);
-
                 if(email!= null & password!= null) {
                     User user = control.login(email, password);
                     if(user != null) {

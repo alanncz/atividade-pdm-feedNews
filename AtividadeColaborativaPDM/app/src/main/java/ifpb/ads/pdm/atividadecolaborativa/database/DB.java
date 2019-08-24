@@ -4,9 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +11,6 @@ import ifpb.ads.pdm.atividadecolaborativa.model.Feed;
 import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
 import ifpb.ads.pdm.atividadecolaborativa.model.User;
 import ifpb.ads.pdm.atividadecolaborativa.rotinas.Temporary;
-import ifpb.ads.pdm.atividadecolaborativa.until.CreatorDrawable;
 
 public class DB {
 

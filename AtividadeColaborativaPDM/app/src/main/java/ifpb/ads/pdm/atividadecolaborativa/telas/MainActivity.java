@@ -103,12 +103,6 @@ public class MainActivity extends Activity {
         rootB.addView(cadastro);
         root.addView(rootB);
         startService(new Intent(MainActivity.this, ServiceRequest.class));
-        User user = new User();
-        user.setPassword("123");
-        user.setEmail("alann@gmail.com");
-        user.setName("Alann");
-        DB db = new DB(this);
-        db.inserir(user);
 
 
     }

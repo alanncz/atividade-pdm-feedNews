@@ -9,19 +9,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ifpb.ads.pdm.atividadecolaborativa.component.ButtonComponent;
 import ifpb.ads.pdm.atividadecolaborativa.component.RefreshNoticesComponent;
 import ifpb.ads.pdm.atividadecolaborativa.control.Control;
-import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
 
 
 public class Principal extends AppCompatActivity {
 
     private RefreshNoticesComponent rnc;
-    private List<FeedMessage> posts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

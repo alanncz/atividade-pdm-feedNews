@@ -15,7 +15,6 @@ public class CreatorDrawable {
     public static  Drawable getImg(URL url) {
         InputStream is = null;
         try {
-            System.out.println(url.toString());
             is = url.openConnection().getInputStream();
         } catch (IOException e) {
             e.printStackTrace();
