@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.ifpb.atividadecolaborativa_pdm.R;
 
+import ifpb.ads.pdm.atividadecolaborativa.database.DB;
+import ifpb.ads.pdm.atividadecolaborativa.model.User;
 import ifpb.ads.pdm.atividadecolaborativa.servicos.ServiceRequest;
 
 public class MainActivity extends Activity {
@@ -101,6 +103,12 @@ public class MainActivity extends Activity {
         rootB.addView(cadastro);
         root.addView(rootB);
         startService(new Intent(MainActivity.this, ServiceRequest.class));
+        User user = new User();
+        user.setPassword("123");
+        user.setEmail("alann@gmail.com");
+        user.setName("Alann");
+        DB db = new DB(this);
+        db.inserir(user);
 
 
     }

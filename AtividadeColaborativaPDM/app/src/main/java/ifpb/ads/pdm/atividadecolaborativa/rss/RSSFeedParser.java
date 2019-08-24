@@ -1,5 +1,7 @@
 package ifpb.ads.pdm.atividadecolaborativa.rss;
 
+import android.text.Html;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -12,6 +14,7 @@ import javax.xml.stream.events.XMLEvent;
 
 import ifpb.ads.pdm.atividadecolaborativa.model.Feed;
 import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
+import ifpb.ads.pdm.atividadecolaborativa.until.ImgContentEncoded;
 
 
 public class RSSFeedParser {
@@ -49,8 +52,7 @@ public class RSSFeedParser {
             String author = "";
             String pubdate = "";
             String guid = "";
-            StringBuilder content_encoded = new StringBuilder();
-            content_encoded.append(" ");
+            String content_encoded = "";
 
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             InputStream in = read();
@@ -99,7 +101,7 @@ public class RSSFeedParser {
                             copyright = getCharacterData(event, eventReader);
                             break;
                         case CONTENT_ENCODED:
-                            content_encoded.append(getCharacterData(event, eventReader));
+                            content_encoded = getCharacterData(event, eventReader);
                             break;
                     }
                 } else if (event.isEndElement()) {
@@ -111,7 +113,8 @@ public class RSSFeedParser {
                         message.setLink(link);
                         message.setTitle(title);
                         message.setPubDate(pubdate);
-                        message.setContentEncoded(content_encoded.toString());
+                        message.setImg(ImgContentEncoded.getImg(content_encoded));
+                        message.setContentEncoded(Html.fromHtml(content_encoded).toString());
                         feed.getEntries().add(message);
                         event = eventReader.nextEvent();
                         continue;

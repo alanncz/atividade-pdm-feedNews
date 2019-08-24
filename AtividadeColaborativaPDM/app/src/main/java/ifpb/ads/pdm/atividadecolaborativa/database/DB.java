@@ -5,12 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import ifpb.ads.pdm.atividadecolaborativa.model.Feed;
 import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
 import ifpb.ads.pdm.atividadecolaborativa.model.User;
+import ifpb.ads.pdm.atividadecolaborativa.rotinas.Temporary;
+import ifpb.ads.pdm.atividadecolaborativa.until.CreatorDrawable;
 
 public class DB {
 
@@ -71,6 +75,7 @@ public class DB {
                 values.put("guid", fm.getGuid());
                 values.put("pubDate", fm.getPubDate());
                 values.put("contentEncoded", fm.getContentEncoded());
+                values.put("img", fm.getImg());
                 db.insert("post", null, values);
                 values.clear();
                 cont++;
@@ -83,7 +88,7 @@ public class DB {
 
     public List<FeedMessage> listar(){
         List<FeedMessage> list = new ArrayList<>();
-        String[] colunas = new String[]{"title", "description", "link", "author", "guid", "pubDate", "contentEncoded"};
+        String[] colunas = new String[]{"title", "description", "link", "author", "guid", "pubDate", "contentEncoded","img"};
 
         Cursor cursor = db.query("post",colunas,null ,null,null,null, "pubDate DESC");
 
@@ -97,11 +102,21 @@ public class DB {
                 fm.setGuid(cursor.getString(4));
                 fm.setPubDate(cursor.getString(5));
                 fm.setContentEncoded(cursor.getString(6));
+                fm.setImg(cursor.getString(7));
                 list.add(fm);
             }
-        }
 
-        return list;
+            Thread t = new Thread(new Temporary(list));
+            t.start();
+
+            ArrayList listAtt = new ArrayList();
+            for(int k = 0; k < list.size();k ++){
+                listAtt.add(Temporary.get());
+            }
+            return listAtt;
+        }
+        return null;
+
     }
 
     public List<String> listarIds(){

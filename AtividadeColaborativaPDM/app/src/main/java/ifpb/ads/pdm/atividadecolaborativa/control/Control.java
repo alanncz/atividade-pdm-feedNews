@@ -18,15 +18,15 @@ public class Control {
 
     public User login(String email, String password){
 
-            User user = db.getUser(email,password);
-            if(user!= null) {
-                    SharedPreferences.Editor editor = context.getSharedPreferences("authenticatedUser", Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("logado", true);
-                    editor.putString("name", user.getName());
-                    editor.putString("email", user.getEmail());
-                    editor.putString("password", user.getPassword());
-                    editor.apply();
-                    return user;
+        User user = db.getUser(email,password);
+        if(user!= null) {
+            SharedPreferences.Editor editor = context.getSharedPreferences("authenticatedUser", Context.MODE_PRIVATE).edit();
+            editor.putBoolean("logado", true);
+            editor.putString("name", user.getName());
+            editor.putString("email", user.getEmail());
+            editor.putString("password", user.getPassword());
+            editor.apply();
+            return user;
             }
 
         return null;

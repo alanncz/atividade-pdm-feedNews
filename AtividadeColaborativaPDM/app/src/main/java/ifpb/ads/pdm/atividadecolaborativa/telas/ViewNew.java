@@ -1,31 +1,28 @@
 package ifpb.ads.pdm.atividadecolaborativa.telas;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.ScrollView;
 
 import ifpb.ads.pdm.atividadecolaborativa.component.ButtonComponent;
-import ifpb.ads.pdm.atividadecolaborativa.component.RefreshNoticesComponent;
+import ifpb.ads.pdm.atividadecolaborativa.component.NewsUniqueComponent;
 import ifpb.ads.pdm.atividadecolaborativa.control.Control;
 import ifpb.ads.pdm.atividadecolaborativa.model.FeedMessage;
 
+public class ViewNew extends AppCompatActivity {
 
-public class Principal extends AppCompatActivity {
-
-    private RefreshNoticesComponent rnc;
-    private List<FeedMessage> posts;
+    private FeedMessage post;
+    private ImageView imageView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         LinearLayout layoutMain = new LinearLayout(this);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -56,7 +53,18 @@ public class Principal extends AppCompatActivity {
         layoutMain.addView(layoutForm);
 
 
-        rnc = new RefreshNoticesComponent(this);
-        layoutMain.addView(rnc);
+
+        Intent intent = getIntent();
+        post = (FeedMessage) intent.getSerializableExtra("post");
+        imageView = new ImageView(this);
+
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.setLayoutParams(layoutParams);
+
+        NewsUniqueComponent newsDetailsComponent = new NewsUniqueComponent(this,
+                post.getTitle(), post.getContentEncoded(), post.getPubDate(), getWindowManager(),imageView);
+        scrollView.addView(newsDetailsComponent);
+        layoutMain.addView(scrollView);
+
     }
 }

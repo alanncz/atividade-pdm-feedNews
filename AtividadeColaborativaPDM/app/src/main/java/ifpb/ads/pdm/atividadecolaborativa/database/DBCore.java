@@ -34,6 +34,7 @@ public class DBCore extends SQLiteOpenHelper {
                 "                author text,\n" +
                 "                guid text primary key,\n" +
                 "                pubDate text,\n" +
+                "                img text,\n" +
                 "                contentEncoded text\n" +
                 "               );";
 
